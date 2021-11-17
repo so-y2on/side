@@ -34,12 +34,12 @@ function resetForm() {
   document.getElementById('content').value = '';
   selectedRow = null;
 }
-/* function onEdit(td) {
+ function onEdit(td) {
   selectedRow = td.parentElement.parentElement;
   document.getElementById('title').value = selectedRow.cells[0].innerHTML;
   document.getElementById('writer').value = selectedRow.cells[1].innerHTML;
   document.getElementById('content').value = selectedRow.cells[2].innerHTML;
-} */
+} 
 function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.title;
   selectedRow.cells[1].innerHTML = formData.writer;
