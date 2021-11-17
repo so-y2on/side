@@ -1,6 +1,6 @@
 var selectedRow = null;
 
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://chifuyu74.shop/post';
 
 // api를 만들어주면 서버 폴더로 가서 git pull 명령어를 터미널에 입력해주고 yarn dev 입력
 
@@ -92,3 +92,8 @@ function onDelete(td) {
     resetForm();
   }
 }
+
+/*
+GET => 
+
+*/
