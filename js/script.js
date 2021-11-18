@@ -2,13 +2,12 @@ var selectedRow = null;
 
 const u = 'http://chifuyu74.shop/post';
 
-var globals = [];
+var globals = {};
 
 function onRead(postId) {
-  var currentPost = globals[postId - 1];
+  var currentPost = globals[postId];
   var currentH1 = document.querySelector('.title');
   console.log(currentH1, currentPost);
-  // currentH1.innerHTML = currentPost.title;
   currentH1.textContent = currentPost.title;
 
   var currentUpdated = document.querySelector('p.updatedAt');
@@ -16,17 +15,33 @@ function onRead(postId) {
 
   var currentContent = document.querySelector('p.content');
   currentContent.innerHTML = currentPost.content;
+
+  var del = document.getElementById('del');
+  del.style.display = 'block';
+  del.addEventListener('click', async function () {
+    if (confirm('정말 삭제하시겠습니까?')) {
+      var d = await fetch(`${u}/${postId}`, {
+        method: 'DELETE',
+      }).then((response) => response.json());
+      console.log(d);
+      if (d && d.id) {
+        //클래스선택해서 요소를 지운다.
+      }
+    }
+  });
 }
 
 async function onList() {
-  var res = await fetch(`${u}`, { method: 'GET' }).then((res) => res.json());
-  globals = res.list;
+  var res = await fetch(u, { method: 'GET' }).then((response) => response.json());
+
   var posts = res.list;
+  console.log(res.list);
 
   var tbody = document.querySelector('#listAll > tbody');
 
   for (let i = 0; i < posts.length; i++) {
     var id = posts[i].id;
+    globals[id] = posts[i];
 
     var tr = document.createElement('tr');
     tr.classList.add(`post_${id}`);
@@ -82,8 +97,8 @@ function insertNewRecord(data) {
   cell3 = newRow.insertCell(2);
   cell3.innerHTML = data.content;
   cell4 = newRow.insertCell(3);
-  /*  cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
-                     <a onClick="onDelete(this)">Delete</a>`; */
+  cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+                     <a onClick="onDelete(this)">Delete</a>`;
   cell4.innerHTML = `<a onClick="onEdit(this)">수정</a>
                      <a onClick="onDelete(this)">삭제</a>`;
 }
@@ -94,7 +109,6 @@ function resetForm() {
   document.getElementById('content').value = '';
   selectedRow = null;
 }
-
 function onEdit(td) {
   selectedRow = td.parentElement.parentElement;
   document.getElementById('title').value = selectedRow.cells[0].innerHTML;
@@ -106,12 +120,4 @@ function updateRecord(formData) {
   selectedRow.cells[0].innerHTML = formData.title;
   selectedRow.cells[1].innerHTML = formData.writer;
   selectedRow.cells[2].innerHTML = formData.content;
-}
-
-function onDelete(td) {
-  if (confirm('정말 삭제하시겠습니까?')) {
-    row = td.parentElement.parentElement;
-    document.getElementById('listAll').deleteRow(row.rowIndex);
-    resetForm();
-  }
 }

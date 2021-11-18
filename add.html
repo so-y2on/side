@@ -11,7 +11,6 @@
 <body>
     <div class="container mt-3">
         <h1>Board</h1>
-       
         <br> 
         <h4>글작성</h4>
         <br>
@@ -19,7 +18,7 @@
          <table class="table table-striped">
           <tr>
               <td>
-                  <form onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off">
+                  <form id="form" onsubmit="event.preventDefault();onFormSubmit();">
                       <div>
                           <input type="text" name="title" id="title" placeholder="제목">
                       </div>
@@ -31,7 +30,8 @@
                       </div>
                       <br>
                       <div  class="form-action-buttons">
-                          <input type="submit" value="저장">
+                          <input type="submit" value="저장" id="add">
+                          <button onclick="location.href='test.html'">돌아가기</button>
                       </div>
                   </form>
               </td>

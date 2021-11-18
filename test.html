@@ -12,9 +12,7 @@
 <div class="container mt-3">
   <h1>Board</h1>
   <br>
-  <br>
-  <br> 
-  <h4>글작성</h4>
+  <!-- <h4>글작성</h4>
   <br>
 
    <table class="table table-striped">
@@ -37,20 +35,24 @@
             </form>
         </td>
     </tr>
-  </table>
+  </table> -->
 <!--////////////////////////////////////////-->
   <br>
   <br>
-  <br> 
-  <h4>글목록</h4>
+  
+<div>
+  <button style="margin-left:1000px" type="button" onclick="location.href='add.html'">글쓰기</button>
+</div> 
+
+  <h4>목록</h4>
   <br>
   <table class="table table-striped" id="listAll">
     <thead>
       <tr>
         <th>번호</th>
         <th>작성자</th>
-        <th><a onclick="location.href='detail.html'">내용</a></th>
-        <th>비고</th>
+        <th>내용</th>
+        <th>게시일</th>
 
       </tr>
     </thead>
@@ -58,19 +60,20 @@
      
     </tbody>
   </table>
-
-
+  <br>
+  <br>
+  <br> 
+  <h4>상세보기</h4>
+  
+  <button id="del" style="display: none;">삭제</button>
   <h1 class='title'></h1>
   <p class='updatedAt'></p>
   <p class='content'></p>
 
-  <script src="js/script.js"></script>
-</div>
 
-<div>
-  <button style="margin-left:500px" type="button" onclick="location.href='add.html'">글쓰기</button>
-  <!--<script src="add.html"></script>--> 
-</div>
+
+  <script src="js/script.js"></script>
+
 
 </body>
 </html>
