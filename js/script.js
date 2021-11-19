@@ -24,8 +24,16 @@ function onRead(postId) {
         method: 'DELETE',
       }).then((response) => response.json());
       console.log(d);
+
       if (d && d.id) {
-        //클래스선택해서 요소를 지운다.
+        if (d.id == postId) {
+          var post = document.querySelector(`.post_${d.id}`);
+          console.log(post);
+          post.remove();
+          document.querySelector('.title').remove();
+          document.querySelector('p.updatedAt').remove();
+          document.querySelector('p.content').remove();
+        }
       }
     }
   });
