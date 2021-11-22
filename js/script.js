@@ -58,8 +58,10 @@ async function onList() {
     var tr = document.createElement('tr');
     tr.classList.add(`post_${id}`);
     tr.style.cursor = 'pointer';
+
     tr.addEventListener('click', function (e) {
       onRead(id);
+      console.log(id);
     });
 
     var idTd = document.createElement('td');
@@ -79,6 +81,7 @@ async function onList() {
     tr.appendChild(updatedTd);
 
     tbody.appendChild(tr);
+    console.log(tr);
   }
 }
 onList();
