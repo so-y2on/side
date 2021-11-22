@@ -18,7 +18,9 @@ var id = urlParams['id'];
 console.log(id);
 
 async function onList() {
-  var res = await fetch(u, { method: 'GET' }).then((response) => response.json());
+  var res = await fetch(u, {
+    method: 'GET',
+  }).then((response) => response.json());
 
   var posts = res.list;
   console.log(res.list);
@@ -54,9 +56,11 @@ function modify() {
 
   var con = document.querySelector('#content');
   console.log(con.value);
+  console.log(id);
   const data = {
-    title: currentH1,
-    content: con,
+    id,
+    title: currentH1.value,
+    content: con.value,
   };
   mo_add(data);
 }
@@ -67,10 +71,7 @@ async function mo_add(data) {
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
-    body: JSON.stringify({
-      title: data.title,
-      content: data.content,
-    }),
+    body: JSON.stringify(data),
   }).then((res) => res.json());
 
   var add_button = document.createElement('add_button');

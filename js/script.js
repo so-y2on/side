@@ -17,6 +17,10 @@ function onRead(postId) {
   currentContent.innerHTML = currentPost.content;
 
   var del = document.getElementById('del');
+  var mo = document.getElementById('mo');
+
+  mo.style.display = 'block';
+
   del.style.display = 'block';
   del.addEventListener('click', async function () {
     if (confirm('정말 삭제하시겠습니까?')) {
